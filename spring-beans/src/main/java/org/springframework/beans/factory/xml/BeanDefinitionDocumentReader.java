@@ -43,6 +43,8 @@ public interface BeanDefinitionDocumentReader {
 	 * @param readerContext the current context of the reader
 	 * (includes the target registry and the resource being parsed)
 	 * @throws BeanDefinitionStoreException in case of parsing errors
+	 * doc 文档对象
+	 * readerContext xml解析的上下文
 	 */
 	void registerBeanDefinitions(Document doc, XmlReaderContext readerContext)
 			throws BeanDefinitionStoreException;
