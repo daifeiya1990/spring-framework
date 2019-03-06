@@ -35,16 +35,11 @@ import org.springframework.beans.factory.BeanDefinitionStoreException;
  * @see XmlBeanDefinitionReader#setDocumentReaderClass
  */
 public interface BeanDefinitionDocumentReader {
-
 	/**
-	 * Read bean definitions from the given DOM document and
-	 * register them with the registry in the given reader context.
-	 * @param doc the DOM document
-	 * @param readerContext the current context of the reader
-	 * (includes the target registry and the resource being parsed)
-	 * @throws BeanDefinitionStoreException in case of parsing errors
-	 * doc 文档对象
-	 * readerContext xml解析的上下文
+	 *
+	 * @param doc 文档对象
+	 * @param readerContext  xml解析的上下文
+	 * @throws BeanDefinitionStoreException
 	 */
 	void registerBeanDefinitions(Document doc, XmlReaderContext readerContext)
 			throws BeanDefinitionStoreException;

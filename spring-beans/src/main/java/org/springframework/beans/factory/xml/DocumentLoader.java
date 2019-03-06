@@ -31,20 +31,13 @@ import org.xml.sax.InputSource;
 public interface DocumentLoader {
 
 	/**
-	 * Load a {@link Document document} from the supplied {@link InputSource source}.
-	 * @param inputSource the source of the document that is to be loaded
-	 * @param entityResolver the resolver that is to be used to resolve any entities
-	 * @param errorHandler used to report any errors during document loading
-	 * @param validationMode the type of validation
-	 * {@link org.springframework.util.xml.XmlValidationModeDetector#VALIDATION_DTD DTD}
-	 * or {@link org.springframework.util.xml.XmlValidationModeDetector#VALIDATION_XSD XSD})
-	 * @param namespaceAware {@code true} if support for XML namespaces is to be provided
-	 * @return the loaded {@link Document document}
-	 * @throws Exception if an error occurs
 	 */
 	Document loadDocument(
-			InputSource inputSource, EntityResolver entityResolver,
-			ErrorHandler errorHandler, int validationMode, boolean namespaceAware)
+			InputSource inputSource,//加载 Document 的 Resource 资源
+			EntityResolver entityResolver,//方法参数，解析文件的解析器
+			ErrorHandler errorHandler,//处理加载 Document 对象的过程的错误
+			int validationMode,//验证模式
+			boolean namespaceAware) //命名空间支持。如果要提供对 XML 名称空间的支持，则需要值为 true
 			throws Exception;
 
 }
