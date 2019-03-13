@@ -22,27 +22,12 @@ import org.springframework.core.AttributeAccessor;
 import org.springframework.lang.Nullable;
 
 /**
- * A BeanDefinition describes a bean instance, which has property values,
- * constructor argument values, and further information supplied by
- * concrete implementations.
- *
- * <p>This is just a minimal interface: The main intention is to allow a
- * {@link BeanFactoryPostProcessor} to introspect and modify property values
- * and other bean metadata.
- *
- * @author Juergen Hoeller
- * @author Rob Harrop
- * @since 19.03.2004
- * @see ConfigurableListableBeanFactory#getBeanDefinition
- * @see org.springframework.beans.factory.support.RootBeanDefinition
- * @see org.springframework.beans.factory.support.ChildBeanDefinition
+ * 它描述了一个 Bean 实例的定义
  */
 public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 
 	/**
-	 * Scope identifier for the standard singleton scope: "singleton".
-	 * <p>Note that extended bean factories might support further scopes.
-	 * @see #setScope
+     * 单例
 	 */
 	String SCOPE_SINGLETON = ConfigurableBeanFactory.SCOPE_SINGLETON;
 
@@ -79,9 +64,6 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	 */
 	int ROLE_INFRASTRUCTURE = 2;
 
-
-	// Modifiable attributes
-
 	/**
 	 * Set the name of the parent definition of this bean definition, if any.
 	 */
@@ -104,14 +86,6 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	void setBeanClassName(@Nullable String beanClassName);
 
 	/**
-	 * Return the current bean class name of this bean definition.
-	 * <p>Note that this does not have to be the actual class name used at runtime, in
-	 * case of a child definition overriding/inheriting the class name from its parent.
-	 * Also, this may just be the class that a factory method is called on, or it may
-	 * even be empty in case of a factory bean reference that a method is called on.
-	 * Hence, do <i>not</i> consider this to be the definitive bean type at runtime but
-	 * rather only use it for parsing purposes at the individual bean definition level.
-	 * @see #getParentName()
 	 * @see #getFactoryBeanName()
 	 * @see #getFactoryMethodName()
 	 */

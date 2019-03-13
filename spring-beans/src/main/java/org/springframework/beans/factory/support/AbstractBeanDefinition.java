@@ -552,6 +552,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * @see #AUTOWIRE_BY_TYPE
 	 */
 	public int getResolvedAutowireMode() {
+		// 自动检测模式，获得对应的检测模式
 		if (this.autowireMode == AUTOWIRE_AUTODETECT) {
 			// Work out whether to apply setter autowiring or constructor autowiring.
 			// If it has a no-arg constructor it's deemed to be setter autowiring,
@@ -1074,6 +1075,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 		if (hasMethodOverrides()) {
 			Set<MethodOverride> overrides = getMethodOverrides().getOverrides();
 			synchronized (overrides) {
+				// 循环，执行 prepareMethodOverride
 				for (MethodOverride mo : overrides) {
 					prepareMethodOverride(mo);
 				}
@@ -1090,11 +1092,13 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 */
 	protected void prepareMethodOverride(MethodOverride mo) throws BeanDefinitionValidationException {
 		int count = ClassUtils.getMethodCountForName(getBeanClass(), mo.getMethodName());
+		// class 不存在此方法名
 		if (count == 0) {
 			throw new BeanDefinitionValidationException(
 					"Invalid method override: no method with name '" + mo.getMethodName() +
 					"' on class [" + getBeanClassName() + "]");
 		}
+		//设置 overloaded = false ，这样表示该方法没有重载
 		else if (count == 1) {
 			// Mark override as not overloaded, to avoid the overhead of arg type checking.
 			mo.setOverloaded(false);
